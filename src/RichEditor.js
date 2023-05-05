@@ -141,6 +141,7 @@ export default class RichTextEditor extends Component {
   onMessage(event) {
     const that = this;
     const {onFocus, onBlur, onChange, onPaste, onKeyUp, onKeyDown, onInput, onMessage, onCursorPosition, onLink} = that.props;
+
     try {
       const message = JSON.parse(event.nativeEvent.data);
       const data = message.data;
@@ -367,6 +368,14 @@ export default class RichTextEditor extends Component {
    */
   insertImage(attributes, style) {
     this.sendAction(actions.insertImage, 'result', attributes, style);
+  }
+
+  /**
+   * @param attributes
+   * @param [style]
+   */
+  insertMention(attributes) {
+    this.sendAction(actions.insertMention, 'result', attributes);
   }
 
   /**

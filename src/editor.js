@@ -14,6 +14,7 @@ function getContentCSS() {
         hr{display: block;height: 0; border: 0;border-top: 1px solid #ccc; margin: 15px 0; padding: 0;}
         pre{padding: 10px 5px 10px 10px;margin: 15px 0;display: block;line-height: 18px;background: #F0F0F0;border-radius: 6px;font-size: 13px; font-family: 'monaco', 'Consolas', "Liberation Mono", Courier, monospace; word-break: break-all; word-wrap: break-word;overflow-x: auto;}
         pre code {display: block;font-size: inherit;white-space: pre-wrap;color: inherit;}
+        .zajednica-user-mention { font-weight: 600; }
     </style>
     `;
 }
@@ -400,6 +401,14 @@ function createHTML(options = {}) {
                     }
                 }
             },
+            mention: {
+                result: function( text ) {
+                    if (text){
+                        exec('insertHTML', "\uFEFF<span class='zajednica-user-mention'>@" + text + "</span>\uFEFF");
+                        Actions.UPDATE_HEIGHT();
+                    }
+                }
+            },
             html: {
                 result: function (html){
                     if (html){
@@ -563,7 +572,7 @@ function createHTML(options = {}) {
             function handler() {
                 var activeTools = [];
                 for(var k in actionsHandler){
-                    const state =  Actions[k].state() 
+                    const state =  Actions[k].state()
                     if ( state ){
                         activeTools.push(typeof state === "boolean" ? k : {type: k, value: Actions[k].state()});
                     }

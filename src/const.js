@@ -26,6 +26,7 @@ export const actions = {
   insertText: 'text',
   insertHTML: 'html',
   insertImage: 'image',
+  insertMention: 'mention',
   insertVideo: 'video',
   fontSize: 'fontSize',
   fontName: 'fontName',

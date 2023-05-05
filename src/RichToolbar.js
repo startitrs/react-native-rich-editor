@@ -44,6 +44,7 @@ function getDefaultIcon() {
   texts[actions.blockquote] = require('../img/blockquote.png');
   texts[actions.line] = require('../img/line.png');
   texts[actions.fontSize] = require('../img/fontSize.png');
+  texts[actions.insertMention] = require('../img/mention.png');
   return texts;
 }
 
@@ -154,7 +155,7 @@ export default class RichToolbar extends Component {
   }
 
   _onPress(action) {
-    const {onPressAddImage, onInsertLink, insertVideo} = this.props;
+    const {onPressAddImage, onInsertLink, insertVideo, onPressAddMention} = this.props;
     const editor = this.editor;
 
     if (!editor) {
@@ -199,6 +200,9 @@ export default class RichToolbar extends Component {
         break;
       case actions.insertImage:
         onPressAddImage?.();
+        break;
+      case actions.insertMention:
+        onPressAddMention?.();
         break;
       case actions.insertVideo:
         insertVideo?.();
