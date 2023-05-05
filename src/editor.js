@@ -402,9 +402,9 @@ function createHTML(options = {}) {
                 }
             },
             mention: {
-                result: function( text ) {
-                    if (text){
-                        exec('insertHTML', "\uFEFF<span class='zajednica-user-mention'>@" + text + "</span>\uFEFF");
+                result: function( params ) {
+                    if ( params.user_full_name && params.user_id ){
+                        exec('insertHTML', "\uFEFF<span class='zajednica-user-mention' data-user-id='" + params.user_id + "'>@" + params.user_full_name + "</span>\uFEFF");
                         Actions.UPDATE_HEIGHT();
                     }
                 }
