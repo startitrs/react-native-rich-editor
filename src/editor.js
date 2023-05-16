@@ -404,7 +404,7 @@ function createHTML(options = {}) {
             mention: {
                 result: function( params ) {
                     if ( params.user_full_name && params.user_id ){
-                        exec('insertHTML', "\uFEFF<span class='zajednica-user-mention' data-user-id='" + params.user_id + "'>@" + params.user_full_name + "</span>&nbsp;");
+                        exec('insertHTML', "\uFEFF<span class='zajednica-user-mention' data-user-id='" + params.user_id + "'>" + params.mentionSymbol + params.user_full_name + "</span>&nbsp;");
                         Actions.UPDATE_HEIGHT();
                     }
                 }
